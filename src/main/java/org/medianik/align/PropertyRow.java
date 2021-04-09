@@ -6,27 +6,14 @@ import javafx.scene.layout.Pane;
 
 import static org.medianik.feature.Feature.*;
 
-public class PropertyRow extends Row{
-	private final String text;
+public class PropertyRow extends NamedRow{
 	private final String placeholder;
 	private final TextField textField;
-	private final Label label;
 
-	public PropertyRow(String text, String placeholder, Pane pane){
-		this.text = text;
+	public PropertyRow(String label, String placeholder, Pane pane){
+		super(label, pane);
 		this.placeholder = placeholder;
 		textField = initTextField(pane);
-		label = initLabel(pane);
-	}
-
-	private Label initLabel(Pane pane){
-		final Label label;
-		label = new Label(text);
-		pane.getChildren().add(label);
-		pane.applyCss();
-		pane.layout();
-		label.setTranslateX(-label.getWidth()/2 - OFFSET);
-		return label;
 	}
 
 	private TextField initTextField(Pane pane){
@@ -37,19 +24,14 @@ public class PropertyRow extends Row{
 		textField.setMinHeight(HEIGHT_OF_ROW);
 		textField.setPromptText(placeholder);
 		textField.setMaxWidth(FIELD_WIDTH);
-		textField.setTranslateX(FIELD_WIDTH/2 + OFFSET);
+		textField.setTranslateX(FIELD_WIDTH/2. + OFFSET);
 		return textField;
 	}
 
 	@Override
 	protected void setYOffset(double yOffset){
+		super.setYOffset(yOffset);
 		textField.setTranslateY(yOffset);
-		label.setTranslateY(yOffset);
-	}
-
-	@Override
-	protected double getHeightOfRow(){
-		return HEIGHT_OF_ROW;
 	}
 
 	@Override
@@ -59,13 +41,13 @@ public class PropertyRow extends Row{
 
 		PropertyRow propertyRow = (PropertyRow) o;
 
-		if(!text.equals(propertyRow.text)) return false;
+		if(!super.equals(propertyRow)) return false;
 		return placeholder.equals(propertyRow.placeholder);
 	}
 
 	@Override
 	public int hashCode(){
-		int result = text.hashCode();
+		int result = super.hashCode();
 		result = 31*result + placeholder.hashCode();
 		return result;
 	}

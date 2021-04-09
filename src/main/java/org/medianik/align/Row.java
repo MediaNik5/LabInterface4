@@ -5,9 +5,9 @@ import static org.medianik.feature.Feature.OFFSET;
 public abstract class Row{
 	private double yOffset;
 
-	public void update(int number, int size){
-		yOffset = -(size + size%2 - 1 - 2*number)*OFFSET
-				- ((size-1)/2. - number)*getHeightOfRow();
+	public void update(int index, int size){
+		yOffset = -(size + size%2 - 1 - 2*index)*OFFSET
+				- ((size-1)/2. - index)*getHeightOfRow();
 		setYOffset(yOffset);
 	}
 

@@ -9,9 +9,7 @@ import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.Pane;
 import javafx.scene.layout.StackPane;
 import javafx.stage.Stage;
-import org.medianik.align.ButtonRow;
-import org.medianik.align.PropertyRow;
-import org.medianik.align.Row;
+import org.medianik.align.*;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -81,6 +79,12 @@ public abstract class Feature{
 	public void addButton(String text, EventHandler<? super MouseEvent> onClick){
 		properties.add(new ButtonRow(text, onClick, pane));
 		updateProperties();
+	}
+	public void addComboBox(String label, String...  contents){
+		properties.add(new ComboRow(label, pane, contents));
+	}
+	public void addColorPicker(String label){
+		properties.add(new ColorPickerRow(label, pane));
 	}
 
 	protected final void updateProperties(){

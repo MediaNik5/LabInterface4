@@ -2,11 +2,10 @@ package org.medianik;
 
 import javafx.application.Application;
 import javafx.scene.Scene;
-import javafx.scene.control.Label;
 import javafx.scene.layout.Pane;
 import javafx.scene.layout.StackPane;
 import javafx.stage.Stage;
-import org.medianik.feature.AddContact;
+import org.medianik.feature.CategoryAdding;
 
 /**
  * JavaFX App
@@ -22,7 +21,7 @@ public class App extends Application {
     @Override
     public void start(Stage stage) {
         var scene = new Scene(pane, 640, 480);
-        new AddContact("Privet", pane.getChildren()::add);
+        new CategoryAdding("Privet", pane.getChildren()::add);
         stage.setScene(scene);
         stage.show();
     }
