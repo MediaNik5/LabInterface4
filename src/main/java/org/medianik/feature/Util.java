@@ -11,9 +11,11 @@ import static javafx.scene.paint.Color.WHITE;
 
 public class Util{
 	public static final Paint BUTTON_COLOR = WHITE;
+
 	public static JFXButton newButton(){
 		return newButton("");
 	}
+
 	public static JFXButton newButton(String name){
 		JFXButton button = new JFXButton(name);
 		button.setButtonType(JFXButton.ButtonType.RAISED);

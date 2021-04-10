@@ -2,11 +2,11 @@ package org.medianik.align;
 
 import com.jfoenix.controls.JFXColorPicker;
 import javafx.scene.layout.Pane;
-import org.medianik.feature.Feature;
 
 import static org.medianik.feature.Feature.FIELD_WIDTH;
 import static org.medianik.feature.Feature.OFFSET;
 
+@Deprecated
 public class ColorPickerRow extends NamedRow{
 
 	private final JFXColorPicker picker;

@@ -1,6 +1,5 @@
 package org.medianik.align;
 
-import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
 import javafx.scene.layout.Pane;
 

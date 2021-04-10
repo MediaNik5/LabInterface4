@@ -7,11 +7,12 @@ public abstract class Row{
 
 	public void update(int index, int size){
 		yOffset = -(size + size%2 - 1 - 2*index)*OFFSET
-				- ((size-1)/2. - index)*getHeightOfRow();
+				- ((size - 1)/2. - index)*getHeightOfRow();
 		setYOffset(yOffset);
 	}
 
 	protected abstract void setYOffset(double yOffset);
+
 	protected abstract double getHeightOfRow();
 
 }

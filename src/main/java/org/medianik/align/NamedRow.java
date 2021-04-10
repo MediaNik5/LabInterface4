@@ -16,7 +16,6 @@ public class NamedRow extends Row{
 		this.label = initLabel(pane);
 	}
 
-
 	private Label initLabel(Pane pane){
 		final Label label = new Label(text);
 		pane.getChildren().add(label);

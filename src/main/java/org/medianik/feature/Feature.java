@@ -13,6 +13,7 @@ import org.medianik.align.*;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Objects;
 import java.util.function.Consumer;
 
 public abstract class Feature{
@@ -20,20 +21,23 @@ public abstract class Feature{
 	public final static double HEIGHT_OF_ROW = 25;
 	public static final double FIELD_WIDTH = 150;
 
+	private final Button button;
 	private final String name;
 	private final Pane pane;
 	private final double width;
 	private final double height;
-	private Stage window;
 	private final List<Row> properties = new ArrayList<>();
+	private final FeatureRow row;
+	private Stage window;
 
 	protected Feature(String name, double width, double height, Consumer<Button> nodeAdder){
 		this.name = name;
 		this.width = width;
 		this.height = height;
-		initButton(nodeAdder);
+		button = initButton(nodeAdder);
 		pane = initPane();
 		initWindow();
+		row = new FeatureRow();
 	}
 
 	protected abstract void initWindow();
@@ -49,10 +53,11 @@ public abstract class Feature{
 		return pane;
 	}
 
-	private void initButton(Consumer<Button> buttonAdder){
-		Button button = Util.newButton("Add contact");
+	private Button initButton(Consumer<Button> buttonAdder){
+		Button button = Util.newButton(name);
 		button.setOnAction(this::onClick);
 		buttonAdder.accept(button);
+		return button;
 	}
 
 	private Pane getPane(){
@@ -61,7 +66,9 @@ public abstract class Feature{
 
 	protected void show(){
 		window.show();
+		updateProperties();
 	}
+
 	protected void close(){
 		window.close();
 	}
@@ -70,19 +77,19 @@ public abstract class Feature{
 		show();
 	}
 
-
 	public void addProperty(String label, String placeholder){
 		properties.add(new PropertyRow(label, placeholder, pane));
-		updateProperties();
 	}
 
 	public void addButton(String text, EventHandler<? super MouseEvent> onClick){
 		properties.add(new ButtonRow(text, onClick, pane));
-		updateProperties();
 	}
-	public void addComboBox(String label, String...  contents){
+
+	public void addComboBox(String label, String... contents){
 		properties.add(new ComboRow(label, pane, contents));
 	}
+
+	@Deprecated
 	public void addColorPicker(String label){
 		properties.add(new ColorPickerRow(label, pane));
 	}
@@ -95,5 +102,54 @@ public abstract class Feature{
 	protected void addNode(Node node){
 		getPane().getChildren().add(node);
 		getPane().requestFocus();
+	}
+
+	@Override
+	public boolean equals(Object o){
+		if(this == o) return true;
+		if(!(o instanceof Feature)) return false;
+
+		Feature feature = (Feature) o;
+
+		if(Double.compare(feature.width, width) != 0) return false;
+		if(Double.compare(feature.height, height) != 0) return false;
+		if(!name.equals(feature.name)) return false;
+		return Objects.equals(window, feature.window);
+	}
+
+	@Override
+	public int hashCode(){
+		int result;
+		long temp;
+		result = name.hashCode();
+		temp = Double.doubleToLongBits(width);
+		result = 31*result + (int) (temp ^ (temp >>> 32));
+		temp = Double.doubleToLongBits(height);
+		result = 31*result + (int) (temp ^ (temp >>> 32));
+		result = 31*result + (window != null ? window.hashCode() : 0);
+		return result;
+	}
+
+	public FeatureRow toRow(){
+		return row;
+	}
+
+	public class FeatureRow extends Row{
+		private FeatureRow(){
+		}
+
+		public Feature toFeature(){
+			return Feature.this;
+		}
+
+		@Override
+		protected void setYOffset(double yOffset){
+			button.setTranslateY(yOffset);
+		}
+
+		@Override
+		protected double getHeightOfRow(){
+			return HEIGHT_OF_ROW;
+		}
 	}
 }

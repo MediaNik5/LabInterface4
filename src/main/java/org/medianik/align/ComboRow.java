@@ -1,7 +1,6 @@
 package org.medianik.align;
 
 import com.jfoenix.controls.JFXComboBox;
-import javafx.scene.control.Label;
 import javafx.scene.layout.Pane;
 
 import static org.medianik.feature.Feature.*;
@@ -9,7 +8,6 @@ import static org.medianik.feature.Feature.*;
 public class ComboRow extends NamedRow{
 
 	private final JFXComboBox<String> comboBox;
-
 
 	public ComboRow(String label, Pane pane, String... contents){
 		super(label, pane);
