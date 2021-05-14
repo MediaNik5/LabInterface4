@@ -4,11 +4,11 @@ import javafx.scene.control.Button;
 
 import java.util.function.Consumer;
 
-public class CategoryAdding extends Feature{
+public class AddCategory extends Feature{
 
 	private static final String name = "Add category";
 
-	public CategoryAdding(Consumer<Button> nodeAdder){
+	public AddCategory(Consumer<Button> nodeAdder){
 		super(name, WIDTH, HEIGHT, nodeAdder);
 	}
 
@@ -19,5 +19,4 @@ public class CategoryAdding extends Feature{
 		addButton("Done", (e) -> close());
 		updateProperties();
 	}
-
 }

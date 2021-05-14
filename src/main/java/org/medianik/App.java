@@ -8,9 +8,10 @@ import javafx.scene.image.ImageView;
 import javafx.scene.layout.Pane;
 import javafx.scene.layout.StackPane;
 import javafx.stage.Stage;
+import org.medianik.align.Row;
+import org.medianik.feature.AddAdmin;
 import org.medianik.feature.AddContact;
-import org.medianik.feature.CategoryAdding;
-import org.medianik.feature.Feature;
+import org.medianik.feature.AddCategory;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -22,7 +23,7 @@ import java.util.function.Consumer;
 public class App extends Application{
 
 	private final Pane pane;
-	private final List<Feature.FeatureRow> features;
+	private final List<Row> features;
 
 	public ImageView getImage(String name){
 		var stream = this.getClass().getResourceAsStream(name);
@@ -31,7 +32,7 @@ public class App extends Application{
 	}
 
 	public App(){
-		pane = new StackPane(getImage("/logo.png"));
+		pane = new StackPane(/*getImage("/logo.png")*/);
 		features = new ArrayList<>();
 	}
 
@@ -41,7 +42,7 @@ public class App extends Application{
 
 	@Override
 	public void start(Stage stage){
-		var scene = new Scene(pane, 900, 900);
+		var scene = new Scene(pane, 700, 700);
 		initFeatures();
 		updateFeatures();
 		stage.setScene(scene);
@@ -49,10 +50,12 @@ public class App extends Application{
 	}
 
 	private void initFeatures(){
-		var v = new CategoryAdding(getAdder());
-		features.add(v.toRow());
-		var v1 = new AddContact(getAdder());
-		features.add(v1.toRow());
+		var featureAddCategory = new AddCategory(getAdder());
+		features.add(featureAddCategory.toRow());
+		var featureAddContact = new AddContact(getAdder());
+		features.add(featureAddContact.toRow());
+		var featureAddAdmin = new AddAdmin(getAdder());
+		features.add(featureAddAdmin.toRow());
 	}
 
 	private Consumer<Button> getAdder(){
