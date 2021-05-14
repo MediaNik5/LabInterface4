@@ -25,6 +25,9 @@ public class ComboRow extends NamedRow{
 		comboBox.setMinWidth(FIELD_WIDTH);
 		comboBox.setTranslateX(OFFSET + FIELD_WIDTH/2.);
 		comboBox.getItems().addAll(contents);
+		pane.applyCss();
+		pane.layout();
+		comboBox.lookup(".list-view").setStyle("-fx-font-size: " + FONT_SIZE + "pt;");
 		return comboBox;
 	}
 

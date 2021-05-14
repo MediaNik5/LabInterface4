@@ -6,8 +6,10 @@ import javafx.scene.layout.Background;
 import javafx.scene.layout.BackgroundFill;
 import javafx.scene.layout.CornerRadii;
 import javafx.scene.paint.Paint;
+import javafx.scene.text.Font;
 
 import static javafx.scene.paint.Color.WHITE;
+import static org.medianik.feature.Feature.FONT_SIZE;
 
 public class Util{
 	public static final Paint BUTTON_COLOR = WHITE;
@@ -24,9 +26,11 @@ public class Util{
 						new BackgroundFill(
 								BUTTON_COLOR,
 								new CornerRadii(5),
-								Insets.EMPTY)
+								Insets.EMPTY
+						)
 				)
 		);
+		button.setFont(Font.font(FONT_SIZE));
 		button.setDisableVisualFocus(true);
 		return button;
 	}

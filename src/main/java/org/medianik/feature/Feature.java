@@ -17,9 +17,13 @@ import java.util.Objects;
 import java.util.function.Consumer;
 
 public abstract class Feature{
-	public final static double OFFSET = 5;
-	public final static double HEIGHT_OF_ROW = 25;
-	public static final double FIELD_WIDTH = 150;
+	public final static double OFFSET = 15;
+	public final static double HEIGHT_OF_ROW = 90;
+	public static final double FIELD_WIDTH = 400;
+	public static final boolean RESIZABLE = false;
+	public static final int FONT_SIZE = 40;
+	protected static final int WIDTH = 1000;
+	protected static final int HEIGHT = 600;
 
 	private final Button button;
 	private final String name;
@@ -46,7 +50,7 @@ public abstract class Feature{
 		var pane = new StackPane();
 		var scene = new Scene(pane, width, height);
 		window = new Stage();
-		window.setResizable(false);
+		window.setResizable(RESIZABLE);
 		window.setTitle(name);
 		window.setScene(scene);
 		pane.setOnMouseClicked(t -> pane.requestFocus());

@@ -2,6 +2,7 @@ package org.medianik.align;
 
 import javafx.scene.control.TextField;
 import javafx.scene.layout.Pane;
+import javafx.scene.text.Font;
 
 import static org.medianik.feature.Feature.*;
 
@@ -24,6 +25,7 @@ public class PropertyRow extends NamedRow{
 		textField.setPromptText(placeholder);
 		textField.setMaxWidth(FIELD_WIDTH);
 		textField.setTranslateX(FIELD_WIDTH/2. + OFFSET);
+		textField.setFont(Font.font(FONT_SIZE));
 		return textField;
 	}
 

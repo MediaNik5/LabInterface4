@@ -2,6 +2,8 @@ package org.medianik.align;
 
 import javafx.scene.control.Label;
 import javafx.scene.layout.Pane;
+import javafx.scene.text.Font;
+import org.medianik.feature.Feature;
 
 import static org.medianik.feature.Feature.HEIGHT_OF_ROW;
 import static org.medianik.feature.Feature.OFFSET;
@@ -18,10 +20,12 @@ public class NamedRow extends Row{
 
 	private Label initLabel(Pane pane){
 		final Label label = new Label(text);
+		label.setFont(Font.font(Feature.FONT_SIZE));
 		pane.getChildren().add(label);
 		pane.applyCss();
 		pane.layout();
 		label.setTranslateX(-label.getWidth()/2 - OFFSET);
+
 		return label;
 	}
 

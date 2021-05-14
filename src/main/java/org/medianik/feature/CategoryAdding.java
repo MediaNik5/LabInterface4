@@ -6,8 +6,6 @@ import java.util.function.Consumer;
 
 public class CategoryAdding extends Feature{
 
-	private static final int WIDTH = 400;
-	private static final int HEIGHT = 300;
 	private static final String name = "Add category";
 
 	public CategoryAdding(Consumer<Button> nodeAdder){
